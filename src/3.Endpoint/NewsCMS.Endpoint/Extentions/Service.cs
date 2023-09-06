@@ -1,5 +1,6 @@
 ﻿namespace NewsCMS.Endpoint.Extentions;
 
+using Steeltoe.Discovery.Client;
 using Microsoft.EntityFrameworkCore;
 using Sky.Kernel.Filing.Wireup;
 using Sky.Kernel.Identity.Wireup;
@@ -22,6 +23,7 @@ internal static class Service
 
         source
         .Services
+        .AddDiscoveryClient()
        .AddDbContext<CommandDbContext>(_ =>
        {
            _

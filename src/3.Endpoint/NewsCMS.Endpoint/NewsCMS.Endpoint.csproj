@@ -12,6 +12,7 @@
 		<PackageReference Include="Sky.Kernel.Serializing" Version="1.0.1" />
 		<PackageReference Include="Sky.App.Endpoint.Api" Version="1.2.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageReference Include="Steeltoe.Discovery.Eureka" Version="3.2.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.8" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.8" />
 	</ItemGroup>
@@ -21,9 +22,9 @@
 		<ProjectReference Include="..\..\1.Core\NewsCMS.Core.Contract\NewsCMS.Core.Contract.csproj" />
 		<ProjectReference Include="..\..\1.Core\NewsCMS.Core.Application\NewsCMS.Core.Application.csproj" />
 		<ProjectReference Include="..\..\1.Core\NewsCMS.Core.Domain.Service\NewsCMS.Core.Domain.Service.csproj" />
-		<ProjectReference Include="..\..\2.Infrastructure\Data\NewsCMS.Infra.Data.Sql.Query\NewsCMS.Infra.Data.Sql.Query.csproj" />
-		<ProjectReference Include="..\..\2.Infrastructure\Data\NewsCMS.Infra.Data.Sql.Command\NewsCMS.Infra.Data.Sql.Command.csproj" />
-		<ProjectReference Include="..\..\2.Infrastructure\Data\NewsCMS.Infra.Data.Sql.Common\NewsCMS.Infra.Data.Sql.Common.csproj" />
+		<ProjectReference Include="..\..\2.Infra\Data\NewsCMS.Infra.Data.Sql.Command\NewsCMS.Infra.Data.Sql.Command.csproj" />
+		<ProjectReference Include="..\..\2.Infra\Data\NewsCMS.Infra.Data.Sql.Common\NewsCMS.Infra.Data.Sql.Common.csproj" />
+		<ProjectReference Include="..\..\2.Infra\Data\NewsCMS.Infra.Data.Sql.Query\NewsCMS.Infra.Data.Sql.Query.csproj" />
 	</ItemGroup>
 
 </Project>
