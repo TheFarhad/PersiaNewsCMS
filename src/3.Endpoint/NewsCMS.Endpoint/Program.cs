@@ -1,3 +1,3 @@
-using NewsCMS.Endpoint.Extentions;
+using NewsCMS.Endpoint.Host;
 
 Service.Host(args);

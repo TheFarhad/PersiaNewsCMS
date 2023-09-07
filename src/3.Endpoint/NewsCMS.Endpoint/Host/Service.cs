@@ -1,4 +1,4 @@
-﻿namespace NewsCMS.Endpoint.Extentions;
+﻿namespace NewsCMS.Endpoint.Host;
 
 using Steeltoe.Discovery.Client;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +10,8 @@ using Sky.Kernel.Serializing.Wireup;
 using Sky.App.Endpoint.Api.Extentions;
 using Sky.App.Infra.Data.Sql.Command;
 using Sky.App.Infra.Data.Sql.Command.Interceptors;
+using NewsCMS.Infra.Data.Sql.Command.Contexts;
+using NewsCMS.Infra.Data.Sql.Query.Contexts;
 
 internal static class Service
 {
@@ -18,19 +20,19 @@ internal static class Service
     {
         var configuration = source.Configuration;
 
-        var commandDbConn = configuration.GetConnectionString("CommandDbConn");
-        var queryDbConn = configuration.GetConnectionString("QueryDbConn");
+        var commandDbConn = configuration.GetConnectionString("NewsCMSCommandDbConn");
+        var queryDbConn = configuration.GetConnectionString("NewsCMSQueryDbConn");
 
         source
         .Services
         .AddDiscoveryClient()
-       .AddDbContext<CommandDbContext>(_ =>
+       .AddDbContext<NewsCMSCommandDbContext>(_ =>
        {
            _
            .UseSqlServer(commandDbConn)
-           .AddInterceptors(new CommandDbContextInterceptor());
+           .AddInterceptors(new EventSourcingCommandDbContextInterceptor());
        })
-       .AddDbContext<QueryDbContext>(_ =>
+       .AddDbContext<NewsCMSQueryDbContext>(_ =>
        {
            _.UseSqlServer(queryDbConn);
        })
