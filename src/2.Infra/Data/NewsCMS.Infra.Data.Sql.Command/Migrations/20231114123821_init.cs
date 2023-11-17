@@ -57,12 +57,12 @@ namespace NewsCMS.Infra.Data.Sql.Command.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Keywords",
+                name: "NewsKeywords",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    KCode = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    KeywordCode = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     NewsId = table.Column<long>(type: "bigint", nullable: true),
@@ -72,38 +72,38 @@ namespace NewsCMS.Infra.Data.Sql.Command.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Keywords", x => x.Id);
-                    table.UniqueConstraint("AK_Keywords_Code", x => x.Code);
+                    table.PrimaryKey("PK_NewsKeywords", x => x.Id);
+                    table.UniqueConstraint("AK_NewsKeywords_Code", x => x.Code);
                     table.ForeignKey(
-                        name: "FK_Keywords_News_NewsId",
+                        name: "FK_NewsKeywords_News_NewsId",
                         column: x => x.NewsId,
                         principalTable: "News",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Keywords_Code",
-                table: "Keywords",
-                column: "Code",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Keywords_NewsId",
-                table: "Keywords",
-                column: "NewsId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_News_Code",
                 table: "News",
                 column: "Code",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NewsKeywords_Code",
+                table: "NewsKeywords",
+                column: "Code",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NewsKeywords_NewsId",
+                table: "NewsKeywords",
+                column: "NewsId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Keywords");
+                name: "NewsKeywords");
 
             migrationBuilder.DropTable(
                 name: "OutboxEvents");

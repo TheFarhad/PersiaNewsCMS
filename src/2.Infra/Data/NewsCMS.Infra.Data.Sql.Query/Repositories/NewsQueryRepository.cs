@@ -3,7 +3,6 @@
 using Microsoft.EntityFrameworkCore;
 using Sky.Kernel.Extentions;
 using Sky.App.Infra.Data.Sql.Query;
-using DbSets;
 using Contexts;
 using Core.Contract.Infra.Query;
 using Core.Contract.Services.Query;
@@ -27,6 +26,8 @@ public class NewsQueryRepository : QueryRepository<NewsCMSQueryDbContext>, INews
             .Skip(source.Skip)
             .Take(source.Size)
             .OrderBy(source.SortBy, source.SortAscending)
+            //.Include(_ => _.NewsKeywords)
+            //.ThenInclude(_ => _.Keyword)
             .Select(_ => new NewsSearchItem
             {
                 Id = _.Id,
@@ -34,7 +35,13 @@ public class NewsQueryRepository : QueryRepository<NewsCMSQueryDbContext>, INews
                 Title = _.Title,
                 Description = _.Description,
                 Body = _.Body,
-                Keywords = _.Keywords.Select(_ => _.KCode).ToList()
+                Keywords = _.NewsKeywords
+                    .Select(_ => _.Keyword)
+                    .Select(_ => new NewsKeywordInfo
+                    {
+                        Code = _.Code,
+                        Title = _.Title
+                    }).ToList()
             })
             .ToListAsync();
 

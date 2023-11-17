@@ -12,7 +12,7 @@ using NewsCMS.Infra.Data.Sql.Command.Contexts;
 namespace NewsCMS.Infra.Data.Sql.Command.Migrations
 {
     [DbContext(typeof(NewsCMSCommandDbContext))]
-    [Migration("20230907130911_init")]
+    [Migration("20231114123821_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace NewsCMS.Infra.Data.Sql.Command.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("NewsCMS.Core.Domain.Aggregates.References.Keyword", b =>
+            modelBuilder.Entity("NewsCMS.Core.Domain.Aggregates.References.NewsKeyword", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,7 @@ namespace NewsCMS.Infra.Data.Sql.Command.Migrations
                     b.Property<DateTime?>("CreatedDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("KCode")
+                    b.Property<Guid>("KeywordCode")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<long?>("NewsId")
@@ -65,7 +65,7 @@ namespace NewsCMS.Infra.Data.Sql.Command.Migrations
 
                     b.HasIndex("NewsId");
 
-                    b.ToTable("Keywords", (string)null);
+                    b.ToTable("NewsKeywords", (string)null);
                 });
 
             modelBuilder.Entity("NewsCMS.Core.Domain.Aggregates.Source.News", b =>
@@ -180,7 +180,7 @@ namespace NewsCMS.Infra.Data.Sql.Command.Migrations
                     b.ToTable("OutboxEvents");
                 });
 
-            modelBuilder.Entity("NewsCMS.Core.Domain.Aggregates.References.Keyword", b =>
+            modelBuilder.Entity("NewsCMS.Core.Domain.Aggregates.References.NewsKeyword", b =>
                 {
                     b.HasOne("NewsCMS.Core.Domain.Aggregates.Source.News", null)
                         .WithMany("Keywords")

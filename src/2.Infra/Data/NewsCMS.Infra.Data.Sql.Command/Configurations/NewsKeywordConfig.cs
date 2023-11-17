@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sky.App.Infra.Data.Sql.Command.Configuration;
 using Core.Domain.Aggregates.References;
 
-public class KeywordConfig : IEntityConfig<Keyword>
+public class NewsKeywordConfig : IEntityConfig<NewsKeyword>
 {
-    public void Configure(EntityTypeBuilder<Keyword> builder)
+    public void Configure(EntityTypeBuilder<NewsKeyword> builder)
     {
         builder
-            .ToTable("Keywords");
+            .ToTable("NewsKeywords");
 
         builder
             .HasKey(_ => _.Id);

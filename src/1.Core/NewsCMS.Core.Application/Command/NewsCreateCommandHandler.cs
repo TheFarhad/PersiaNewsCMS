@@ -15,7 +15,7 @@ public class NewsCreateCommandHandler : CommandHandler<NewsCreateCommand, NewsCr
 
     public override async Task<CommandResult<NewsCreatePayload>> HandleAsync(NewsCreateCommand Source)
     {
-        var model = News.Instance(Source.Title, Source.Description, Source.Body, Source.Keywords.Select(_ => Keyword.Instance(_)).ToList());
+        var model = News.Instance(Source.Title, Source.Description, Source.Body, Source.Keywords.Select(_ => NewsKeyword.Instance(_)).ToList());
         await _repository.AddAsync(model);
         await _repository.SaveAsync();
         return await OK(new NewsCreatePayload { Id = model.Id });

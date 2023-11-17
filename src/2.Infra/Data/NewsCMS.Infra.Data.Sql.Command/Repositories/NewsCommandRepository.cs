@@ -1,16 +1,14 @@
 ﻿namespace NewsCMS.Infra.Data.Sql.Command.Configurations;
 
-using Microsoft.EntityFrameworkCore;
-using NewsCMS.Core.Contract.Infra.Command;
-using NewsCMS.Core.Domain.Aggregates.Source;
-using NewsCMS.Infra.Data.Sql.Command.Contexts;
-using Sky.App.Core.Contract.Infra.Command;
-using Sky.App.Infra.Data.Sql.Command;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Sky.App.Infra.Data.Sql.Command;
+using Sky.App.Core.Contract.Infra.Command;
+using Contexts;
+using Core.Contract.Infra.Command;
+using Core.Domain.Aggregates.Source;
 
 public class NewsCommandRepository : CommandRepository<News, NewsCMSCommandDbContext>, INewsCommandRepository
 {

@@ -18,7 +18,7 @@ public class NewsEditCommandHandler : CommandHandler<NewsEditCommand, NewsEditPa
         if (model is null) Result = await NotFound();
         else
         {
-            model.Edit(source.Title, source.Description, source.Body, source.Keywords.Select(_ => Keyword.Instance(_)).ToList());
+            model.Edit(source.Title, source.Description, source.Body, source.Keywords.Select(_ => NewsKeyword.Instance(_)).ToList());
             await _repository.SaveAsync();
             Result = await OK(new NewsEditPayload { Id = model.Id });
         }

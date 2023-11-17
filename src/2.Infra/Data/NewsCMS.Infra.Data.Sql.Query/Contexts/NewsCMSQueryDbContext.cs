@@ -7,12 +7,8 @@ using DbSets;
 public class NewsCMSQueryDbContext : QueryDbContext
 {
     public DbSet<News> News => Set<News>();
+    public DbSet<NewsKeyword> NewsKeywords => Set<NewsKeyword>();
     public DbSet<Keyword> Keywords => Set<Keyword>();
 
     public NewsCMSQueryDbContext(DbContextOptions<NewsCMSQueryDbContext> options) : base(options) { }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
-    }
 }

@@ -5,17 +5,16 @@ using Microsoft.EntityFrameworkCore;
 using Sky.Kernel.Filing.Wireup;
 using Sky.Kernel.Identity.Wireup;
 using Sky.Kernel.Hashing.Wireup;
-using Sky.App.Infra.Data.Sql.Query;
 using Sky.Kernel.Serializing.Wireup;
 using Sky.App.Endpoint.Api.Extentions;
-using Sky.App.Infra.Data.Sql.Command;
 using Sky.App.Infra.Data.Sql.Command.Interceptors;
-using NewsCMS.Infra.Data.Sql.Command.Contexts;
-using NewsCMS.Infra.Data.Sql.Query.Contexts;
+using PollingPublisher.Subscribers;
+using Infra.Data.Sql.Query.Contexts;
+using Infra.Data.Sql.Command.Contexts;
 
 internal static class Service
 {
-    internal static void Host(string[] args) => WebApplication.CreateBuilder(args).Services().Middlewares();
+    internal static void Host(string[] args) => WebApplication.CreateBuilder(args).Services().Pipeline();
     private static WebApplication Services(this WebApplicationBuilder source)
     {
         var configuration = source.Configuration;
@@ -43,11 +42,12 @@ internal static class Service
        .FakeUserServiceWireup()
        .WebApiWireup("Sky", "NewsCMS")
        .AddEndpointsApiExplorer()
+       .AddHostedService<KeywordConsumer>()
        .AddSwaggerGen();
 
         return source.Build();
     }
-    private static void Middlewares(this WebApplication source)
+    private static void Pipeline(this WebApplication source)
     {
         if (source.Environment.IsDevelopment())
         {

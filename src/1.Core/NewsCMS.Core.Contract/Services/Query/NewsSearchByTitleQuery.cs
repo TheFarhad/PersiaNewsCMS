@@ -7,11 +7,7 @@ public class NewsSearchByTitleQuery : PageQuery<NewsSearchByTitlePayload>
     public string Title { get; set; }
 }
 
-public class NewsSearchByTitlePayload
-{
-    public List<NewsSearchItem> Items { get; set; }
-    public int Total { get; set; }
-}
+public class NewsSearchByTitlePayload : QueryPayload<NewsSearchItem> { }
 
 public class NewsSearchItem
 {
@@ -20,5 +16,11 @@ public class NewsSearchItem
     public string Title { get; set; }
     public string Description { get; set; }
     public string Body { get; set; }
-    public List<Guid> Keywords { get; set; } = new();
+    public List<NewsKeywordInfo> Keywords { get; set; } = new();
+}
+
+public class NewsKeywordInfo
+{
+    public Guid Code { get; set; }
+    public string Title { get; set; }
 }

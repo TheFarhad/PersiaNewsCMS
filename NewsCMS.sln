@@ -49,6 +49,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsCMS.Application.Tests.U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsCMS.Domain.Tests.Unit", "test\1.Core\NewsCMS.Domain.Tests.Unit\NewsCMS.Domain.Tests.Unit.csproj", "{A6A6F1FA-724A-478C-9BE2-7A20F06A8732}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalApi", "ExternalApi", "{224CF0FF-905A-4273-870E-CB3D7AB5E3F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollingPublisher", "src\2.Infra\ExternalApi\PollingPublisher\PollingPublisher.csproj", "{176A2E65-E00C-4E22-AD36-C18F437D98B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +115,10 @@ Global
 		{A6A6F1FA-724A-478C-9BE2-7A20F06A8732}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6A6F1FA-724A-478C-9BE2-7A20F06A8732}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6A6F1FA-724A-478C-9BE2-7A20F06A8732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{176A2E65-E00C-4E22-AD36-C18F437D98B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{176A2E65-E00C-4E22-AD36-C18F437D98B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{176A2E65-E00C-4E22-AD36-C18F437D98B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{176A2E65-E00C-4E22-AD36-C18F437D98B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +145,8 @@ Global
 		{802216A6-DEE6-4EAD-9765-3D418DF3C9C4} = {109D36C6-42D9-446B-91DB-D9184F7C879D}
 		{C2F9F3A5-CE70-4A45-9076-24EC77D90B5D} = {109D36C6-42D9-446B-91DB-D9184F7C879D}
 		{A6A6F1FA-724A-478C-9BE2-7A20F06A8732} = {109D36C6-42D9-446B-91DB-D9184F7C879D}
+		{224CF0FF-905A-4273-870E-CB3D7AB5E3F2} = {53689D3D-CC84-4D77-B808-C99DF25D5140}
+		{176A2E65-E00C-4E22-AD36-C18F437D98B7} = {224CF0FF-905A-4273-870E-CB3D7AB5E3F2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D48431F9-76A9-4116-AB8D-B2F6CDBFC697}

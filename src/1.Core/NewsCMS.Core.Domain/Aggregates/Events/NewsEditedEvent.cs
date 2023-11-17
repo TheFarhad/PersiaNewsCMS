@@ -11,15 +11,15 @@ public class NewsEditedEvent : IEvent
     public string Body { get; private set; }
     public string Keywords { get; private set; }
 
-    private NewsEditedEvent(Guid code, string title, string description, string body, List<Keyword> keywords)
+    private NewsEditedEvent(Guid code, string title, string description, string body, List<NewsKeyword> keywords)
     {
         Code = code;
         Title = title;
         Description = description;
         Body = body;
-        Keywords = String.Join(";", keywords.Select(_ => _.KCode.ToString()));
+        Keywords = String.Join(";", keywords.Select(_ => _.KeywordCode.ToString()));
     }
 
-    public static NewsEditedEvent Instance(Guid code, string title, string description, string body, List<Keyword> keywords) =>
+    public static NewsEditedEvent Instance(Guid code, string title, string description, string body, List<NewsKeyword> keywords) =>
         new(code, title, description, body, keywords);
 }

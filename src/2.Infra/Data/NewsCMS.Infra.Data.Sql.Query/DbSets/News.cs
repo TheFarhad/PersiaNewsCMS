@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class News
 {
@@ -10,11 +11,18 @@ public class News
     public string Title { get; set; }
     public string Description { get; set; }
     public string Body { get; set; }
-    public List<Keyword> Keywords { get; set; } = new();
+    public List<NewsKeyword> NewsKeywords { get; set; } = new();
 }
 
-public class Keyword
+public class NewsKeyword
 {
     public long Id { get; set; }
-    public Guid KCode { get; set; }
+
+    [ForeignKey("News")]
+    public long NewsId { get; set; }
+    public News News { get; set; }
+
+    [ForeignKey("Keyword")]
+    public Guid KeywordCode { get; set; }
+    public Keyword Keyword { get; set; }
 }
