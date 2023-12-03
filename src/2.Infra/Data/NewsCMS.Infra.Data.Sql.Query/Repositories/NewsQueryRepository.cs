@@ -26,8 +26,8 @@ public class NewsQueryRepository : QueryRepository<NewsCMSQueryDbContext>, INews
             .Skip(source.Skip)
             .Take(source.Size)
             .OrderBy(source.SortBy, source.SortAscending)
-            //.Include(_ => _.NewsKeywords)
-            //.ThenInclude(_ => _.Keyword)
+            .Include(_ => _.NewsKeywords)
+            .ThenInclude(_ => _.Keyword)
             .Select(_ => new NewsSearchItem
             {
                 Id = _.Id,

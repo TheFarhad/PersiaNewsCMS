@@ -16,12 +16,12 @@ public class KeywordConsumer : BackgroundService
     private readonly IModel _model;
     private readonly string _exchange = "PersiaNews";
     private readonly string _bindKey = "PersiaNews.BasicInfo.KeywordEventPulisher";
-    private readonly ISerialize _serializeing;
+    private readonly ISerialize _serializer;
     private readonly EventDispatcher _eventDispatcher;
 
     public KeywordConsumer(ISerialize serializeing, IServiceProvider serviceProvider)
     {
-        _serializeing = serializeing;
+        _serializer = serializeing;
         _eventDispatcher = serviceProvider.GetRequiredService<EventDispatcher>();
 
         var connection = new ConnectionFactory
@@ -40,7 +40,7 @@ public class KeywordConsumer : BackgroundService
     private async void ReceiveEvent(object? sender, BasicDeliverEventArgs args)
     {
         var jsonBody = Encoding.UTF8.GetString(args.Body.ToArray());
-        var keywordCreatedEvent = _serializeing.Deserialize<KeywordCreatedEvent>(jsonBody);
+        var keywordCreatedEvent = _serializer.Deserialize<KeywordCreatedEvent>(jsonBody);
         await _eventDispatcher.DispatchAsync<KeywordCreatedEvent>(keywordCreatedEvent);
         _messageCount++;
     }
